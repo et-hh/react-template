@@ -8,6 +8,7 @@ export default class extends React.Component {
 
   onChangeMenuItem = ({ key }) => {
     const path = this.navMenus[key].routes[0].path
+    console.log(path)
     router.push(path)
   }
 

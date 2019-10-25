@@ -1,5 +1,5 @@
 export default function() {
   return (
-    <div>33333</div>
+    <div>语料库</div>
   )
 }
