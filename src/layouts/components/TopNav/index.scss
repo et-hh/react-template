@@ -1,0 +1,29 @@
+$nav-height: 48px;
+$nav-bg: #140934;
+$nav-right-height: 28px;
+
+.navbar {
+  height: $nav-height;
+  padding: 0 36px;
+  background-color: $nav-bg;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  > .left {
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+  }
+  > .right {
+    height: $nav-right-height;
+    color: #8B8599;
+    > .avatar {
+      width: 28px;
+      height: $nav-right-height;
+      margin-right: 10px;
+    }
+    .username  {
+      line-height: $nav-right-height;
+    }
+  }
+}
