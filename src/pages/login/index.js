@@ -1,60 +1,28 @@
 import React from 'react'
-import { Form, Input, Icon, Button } from 'antd'
 import { connect } from 'dva'
+import { LoginForm } from '@/components'
+import styles from './index.scss'
 
 @connect()
 class Login extends React.Component {
-  state = {
-    phoneNumber: null,
-    password: null
-  }
-
-  handleSubmit = e => {
-    e.preventDefault()
+  handleSubmit = payload => {
     this.props.dispatch({
       type: 'user/login',
-      payload: {
-        phoneNumber: this.state.phoneNumber,
-        password: this.state.password
-      }
+      payload
     })
   }
 
   render() {
     return (
-      <div className='login'>
-        <div className='login_title'>语料库系统</div>
-        <Form
-          onSubmit={this.handleSubmit}
-        >
-          <Form.Item
-          >
-            <Input
-              prefix={<Icon type='user'/>}
-              placeholder='username'
-              value={this.state.phoneNumber}
-              onChange={e => this.setState({
-                phoneNumber: e.target.value
-              })}
-            />
-          </Form.Item>
-          <Form.Item
-
-          >
-            <Input
-              prefix={<Icon type='lock'/>}
-              placeholder='password'
-              type='password'
-              value={this.state.password}
-              onChange={e => this.setState({
-                password: e.target.value
-              })}
-            />
-          </Form.Item>
-          <Form.Item>
-            <Button htmlType='submit'>登录</Button>
-          </Form.Item>
-        </Form>
+      <div className={styles.login}>
+        <LoginForm
+          title='语料库系统'
+          style={{
+            width: '500px',
+            margin: 'auto'
+          }}
+          onSubmit={payload => this.handleSubmit(payload)}
+        />
       </div>
     )
   }
