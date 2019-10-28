@@ -1,5 +1,5 @@
 import { login, logout, fetchUser } from '@/api/user'
-import { routerRedux } from 'dva/router'
+import { router } from 'dva'
 import { notification } from 'antd'
 
 export default {
@@ -13,15 +13,15 @@ export default {
     *login({ payload }, { call, put }) {
       const res = yield call(login, payload)
       yield put({ type: 'updateCurrent', payload: res.data })
-      yield put(routerRedux.replace('/'))
+      yield put(router.routerRedux.replace('/'))
     },
     *logout(_, { call, put }) {
       yield call(logout)
       yield put({ type: 'updateCurrent', payload: {} })
       notification.error({
-        message: '登出成功'
+        message: '登出成功',
       })
-      yield put(routerRedux.replace('/login'))
+      yield put(router.routerRedux.replace('/login'))
     },
     *fetchCurrent(_, { call, put }) {
       const res = yield call(fetchUser)
@@ -31,19 +31,19 @@ export default {
       const currentUser = {
         name: payload.name,
         phoneNumber: payload.phoneNumber,
-        userId: payload.userId
+        userId: payload.userId,
       }
       yield put({
         type: 'saveCurrentUser',
-        payload: currentUser
+        payload: currentUser,
       })
-    }
+    },
   },
 
   reducers: {
     saveCurrentUser(state, action) {
       state.current = action.payload
       return state
-    }
-  }
+    },
+  },
 }
