@@ -13,7 +13,9 @@ export default {
     *login({ payload }, { call, put }) {
       const res = yield call(login, payload)
       yield put({ type: 'updateCurrent', payload: res.data })
-      yield put(routerRedux.replace('/'))
+      if (res.code === 200) {
+        yield put(routerRedux.replace('/'))
+      }
     },
     *logout(_, { call, put }) {
       yield call(logout)
@@ -27,7 +29,7 @@ export default {
       const res = yield call(fetchUser)
       yield put({ type: 'updateCurrent', payload: res.data })
     },
-    *updateCurrent({ payload = {} }, { call, put }) {
+    *updateCurrent({ payload = {} }, { put }) {
       const currentUser = {
         name: payload.name,
         phoneNumber: payload.phoneNumber,

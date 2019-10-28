@@ -16,9 +16,9 @@ class Login extends React.Component {
     return (
       <div className={styles.login}>
         <LoginForm
-          title='语料库系统'
+          title='一知语料库管理系统'
           style={{
-            width: '500px',
+            width: '360px',
             margin: 'auto'
           }}
           onSubmit={payload => this.handleSubmit(payload)}

@@ -1,23 +1,52 @@
 import React from 'react'
-import { Form, Input, Icon, Button, Checkbox } from 'antd'
+import { Form, Icon, Button, Checkbox } from 'antd'
+import { YiwiseInput } from '@/components'
 import { mobile as regexpMobile, password as regexpPassword } from '@/utils/regexp'
+import { storePPObj, genDecodePassword, genPPCache } from './utils'
 import styles from './index.scss'
 
 class LoginForm extends React.Component {
+  state = {
+    rememberPasswordChecked: false,
+  };
+
   handleSubmit(e) {
     e.preventDefault()
     this.props.form.validateFields((error, fieldsValue) => {
       if (error) return
+
+      const { phoneNumber, password } = fieldsValue
+      const isRememberChecked = this.state.rememberPasswordChecked
+      storePPObj({
+        phoneNumber,
+        password: isRememberChecked ? password : '',
+      })
       this.props.onSubmit && this.props.onSubmit(fieldsValue)
     })
   }
 
   handleChangeIsRememberPassword = e => {
-    console.log(e)
-  }
+    this.setState({
+      rememberPasswordChecked: e.target.checked,
+    })
+  };
+
+  handleChangePhoneNumber = e => {
+    const phoneNumber = e.target.value
+    const PPCache = genPPCache()
+    if (phoneNumber && regexpMobile.test(phoneNumber)) {
+      const { setFieldsValue } = this.props.form
+      const cachePassword = PPCache[phoneNumber]
+      setFieldsValue({
+        password: cachePassword ? genDecodePassword(cachePassword) : '',
+      })
+    }
+  };
 
   render() {
-    const { title, form, onSubmit, ...others } = this.props
+    /*eslint-disable */
+    const { title, form, onSubmit, ...others } = this.props;
+    /*eslint-enable */
     const { getFieldDecorator } = form
     return (
       <div className={styles.formWrap} {...others}>
@@ -29,7 +58,14 @@ class LoginForm extends React.Component {
                 { required: true, message: '不可为空' },
                 { pattern: regexpMobile, message: '请输入正确的手机号格式' },
               ],
-            })(<Input prefix={<Icon type="user" />} placeholder="username" allowClear />)}
+            })(
+              <YiwiseInput
+                prefix={<Icon type="user" />}
+                placeholder="请输入手机号"
+                allowClear
+                onChange={e => this.handleChangePhoneNumber(e)}
+              />,
+            )}
           </Form.Item>
           <Form.Item>
             {getFieldDecorator('password', {
@@ -38,9 +74,9 @@ class LoginForm extends React.Component {
                 { pattern: regexpPassword, message: '请输入6位以上的密码' },
               ],
             })(
-              <Input
+              <YiwiseInput
                 prefix={<Icon type="lock" />}
-                placeholder="password"
+                placeholder="请输入密码"
                 type="password"
                 allowClear
               />,

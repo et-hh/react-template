@@ -2,8 +2,14 @@
   "extends": "eslint-config-umi",
   "rules": {
     "semi": ["error", "never"],
-    "no-trailing-spaces": [
-      "error"
+    "no-trailing-spaces": ["error"],
+    "no-multi-spaces": ["error"],
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "after-used"
+      }
     ]
   }
 }
