@@ -21,7 +21,9 @@ class LoginForm extends React.Component {
   }
 
   render() {
+    /*eslint-disable */
     const { title, form, onSubmit, ...others } = this.props
+    /*eslint-enable */
     const { getFieldDecorator } = form
     return (
       <div className={styles.formWrap} {...others}>
@@ -38,7 +40,7 @@ class LoginForm extends React.Component {
                 ]
               })(<YiwiseInput
                 prefix={<Icon type='user'/>}
-                placeholder='username'
+                placeholder='请输入手机号'
                 allowClear
               />)
             }
@@ -52,7 +54,7 @@ class LoginForm extends React.Component {
                 ]
               })(<YiwiseInput
                 prefix={<Icon type='lock'/>}
-                placeholder='password'
+                placeholder='请输入密码'
                 type='password'
                 allowClear
               />)
