@@ -1,5 +1,5 @@
-$--color-link-normal: #1A1098;
-$--color-link-hover: #2012D8;
+$--color-link-normal: #1a1098;
+$--color-link-hover: #2012d8;
 
 @mixin yiwiseIconKlass {
   font-family: 'iconfont' !important;
@@ -7,7 +7,9 @@ $--color-link-hover: #2012D8;
   -webkit-font-smoothing: antialiased;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
 }
 
@@ -15,7 +17,7 @@ body {
   margin: 0;
   a {
     color: $--color-link-normal;
-    &:hover  {
+    &:hover {
       color: $--color-link-hover;
     }
   }
@@ -49,6 +51,32 @@ body {
   }
 }
 
+// PaginationTable
+.PaginationTable {
+  .ant-table {
+    font-size: 12px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    color: #333333;
+  }
+  .ant-table-thead {
+    line-height: 36px;
+    > tr > th {
+      padding: 0 0 0 15px;
+      background-color: #f0f3f8;
+    }
+  }
+  .ant-table-tbody {
+    line-height: 36px;
+    > tr {
+      &:nth-child(2n) {
+        background-color: #f8f8f8;
+      }
+      > td {
+        padding: 0 0 0 15px;
+      }
+    }
+  }
+}
 // Modal
 .ant-modal {
   .ant-modal-content {
@@ -82,7 +110,7 @@ body {
     .ant-select-arrow {
       .ant-select-arrow-icon {
         color: #656565;
-        transition: transform .3s;
+        transition: transform 0.3s;
         &:after {
           content: '\e701';
           @include yiwiseIconKlass;

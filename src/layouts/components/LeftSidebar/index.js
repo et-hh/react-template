@@ -1,11 +1,11 @@
 import React from 'react'
 import { getNavMenu } from './utils'
 import { Icon, Menu } from 'antd'
-import router from 'umi/router'
+import { router } from 'umi'
 
 export default class extends React.Component {
   state = {
-    selectedKeys: []
+    selectedKeys: [],
   }
 
   navMenus = getNavMenu()
@@ -13,27 +13,27 @@ export default class extends React.Component {
   componentDidMount() {
     const path = window.location.pathname
     this.setState({
-      selectedKeys: [path]
+      selectedKeys: [path],
     })
   }
 
   onChangeMenuItem = e => {
     const path = e.key
-    this.setState({
-      selectedKeys: [path]
-    }, () => {
-      router.push(path)
-    })
+    this.setState(
+      {
+        selectedKeys: [path],
+      },
+      () => {
+        router.push(path)
+      },
+    )
   }
 
   recursionMenu(navMenu) {
     const submenuRoutes = navMenu.routes
-    if (submenuRoutes && submenuRoutes.length > 1)  {
+    if (submenuRoutes && submenuRoutes.length > 1) {
       return (
-        <Menu.SubMenu
-          key={navMenu.path}
-          title={navMenu.meta.title}
-        >
+        <Menu.SubMenu key={navMenu.path} title={navMenu.meta.title}>
           {submenuRoutes.map(submenu => {
             return this.recursionMenu(submenu)
           })}
@@ -44,10 +44,8 @@ export default class extends React.Component {
     const menuItemPath = submenuRoutes ? submenuRoutes[0].path : navMenu.path
     const menuItemTitle = submenuRoutes ? submenuRoutes[0].meta.title : navMenu.meta.title
     return (
-      <Menu.Item
-        key={menuItemPath}
-      >
-        <Icon type='pie-chart'/>
+      <Menu.Item key={menuItemPath}>
+        <Icon type="pie-chart" />
         <span>{menuItemTitle}</span>
       </Menu.Item>
     )
@@ -57,16 +55,14 @@ export default class extends React.Component {
     const { selectedKeys } = this.state
     return (
       <Menu
-        theme='light'
-        mode='inline'
+        theme="light"
+        mode="inline"
         selectedKeys={selectedKeys}
-        onClick={(menuItem) => this.onChangeMenuItem(menuItem)}
+        onClick={menuItem => this.onChangeMenuItem(menuItem)}
       >
-        {
-          this.navMenus.map(navmenu => {
-            return this.recursionMenu(navmenu)
-          })
-        }
+        {this.navMenus.map(navmenu => {
+          return this.recursionMenu(navmenu)
+        })}
       </Menu>
     )
   }

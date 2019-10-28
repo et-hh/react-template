@@ -7,13 +7,13 @@ export async function login(params) {
   return request(`${entryPrefix}/login`, {
     method: 'POST',
     data: params,
-    requestType: 'form'
+    requestType: 'form',
   })
 }
 
 export async function logout() {
   return request(`${entryPrefix}/logout`, {
-    method: 'POST'
+    method: 'POST',
   })
 }
 
