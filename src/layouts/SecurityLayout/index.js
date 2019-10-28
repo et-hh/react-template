@@ -1,6 +1,7 @@
 import React from 'react'
 import { Redirect } from 'umi'
 import { connect } from 'dva'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import styles from '../index.scss'
 import LeftSidebar from '../components/LeftSidebar'
 import TopNav from '../components/TopNav'
@@ -14,6 +15,12 @@ class SecurityLayout extends React.Component {
     this.setState({
       isReady: true
     })
+
+    const currentUser = this.props.currentUser
+    if (currentUser && currentUser.userId) {
+      return
+    }
+
     this.props.dispatch({
       type: 'user/fetchCurrent'
     })
@@ -22,7 +29,7 @@ class SecurityLayout extends React.Component {
   render() {
     if (!this.state.isReady) return null
     
-    const { loading, currentUser } = this.props
+    const { loading, currentUser, location } = this.props
     if (loading)  {
       return <div>loading</div>
     }
@@ -41,9 +48,15 @@ class SecurityLayout extends React.Component {
           <div className={styles.app_sidebar}>
             <LeftSidebar />
           </div>
-          <div className={styles.app_main}>
-            {this.props.children}
-          </div>
+          <TransitionGroup className={styles.app_main}>
+            <CSSTransition
+              key={location.pathname}
+              classNames='fade'
+              timeout={300}
+            >
+              {this.props.children}
+            </CSSTransition>
+          </TransitionGroup>
         </div>
       </div>
     )

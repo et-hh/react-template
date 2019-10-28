@@ -7,10 +7,26 @@ export default {
       component: '../layouts/SecurityLayout', // 相对于pages目录下
       routes: [
         {
-          path: '',
+          path: '/corpus',
           component: './corpus',
           meta: {
             title: '语料库'
+          }
+        }
+      ]
+    },
+    {
+      path: '/demo',
+      component: '../layouts/SecurityLayout',
+      meta: {
+        title: 'demo子菜单'
+      },
+      routes: [
+        {
+          path: '/demo',
+          component: './demo',
+          meta: {
+            title: 'demo'
           }
         }
       ]
@@ -42,7 +58,7 @@ export default {
         immer: true
       },
       dynamicImport: { webpackChunkName: true },
-      title: 'yiwise-project-react-template',
+      title: 'react-demo项目',
       dll: true,
       locale: {
         enable: true,

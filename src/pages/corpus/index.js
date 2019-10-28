@@ -1,5 +1,7 @@
 export default function() {
   return (
-    <div>33333</div>
+    <div style={{
+      height: '100%'
+    }}>语料库</div>
   )
 }
