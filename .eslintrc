@@ -1,6 +1,7 @@
 {
   "extends": "eslint-config-umi",
   "rules": {
-    "semi": ["error", "never"]
+    "semi": ["error", "never"],
+    "no-trailing-spaces": ["error"]
   }
 }
