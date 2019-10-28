@@ -1,5 +1,6 @@
 import React from 'react'
-import { Form, Input, Icon, Button, Checkbox } from 'antd'
+import { Form, Icon, Button, Checkbox } from 'antd'
+import { YiwiseInput } from '@/components'
 import {
   mobile as regexpMobile,
   password as regexpPassword
@@ -35,7 +36,7 @@ class LoginForm extends React.Component {
                   { required: true, message: '不可为空' },
                   { pattern: regexpMobile, message: '请输入正确的手机号格式'}
                 ]
-              })(<Input
+              })(<YiwiseInput
                 prefix={<Icon type='user'/>}
                 placeholder='username'
                 allowClear
@@ -49,7 +50,7 @@ class LoginForm extends React.Component {
                   { required: true, message: '不可为空' },
                   { pattern: regexpPassword, message: '请输入6位以上的密码' }
                 ]
-              })(<Input
+              })(<YiwiseInput
                 prefix={<Icon type='lock'/>}
                 placeholder='password'
                 type='password'

@@ -39,7 +39,7 @@ body {
     border-radius: 0;
     color: #333333;
     &:focus {
-      box-shadow: 0 0 0 0;
+      box-shadow: 0 0 0 0 !important; // error情况下也有box-shadow的设置，这里直接!important
     }
   }
   .ant-input-suffix {
