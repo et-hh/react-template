@@ -1,7 +1,6 @@
 import React from 'react'
 import { Input } from 'antd'
 import YiwiseColorIcon from '../YiwiseColorIcon'
-import './index.scss'
 
 class YiwiseInput extends React.Component {
   render() {
