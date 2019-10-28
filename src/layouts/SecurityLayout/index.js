@@ -15,9 +15,12 @@ class SecurityLayout extends React.Component {
     this.setState({
       isReady: true
     })
-    if (this.props.currentUser && this.props.currentUser.userId) {
+
+    const currentUser = this.props.currentUser
+    if (currentUser && currentUser.userId) {
       return
     }
+
     this.props.dispatch({
       type: 'user/fetchCurrent'
     })
@@ -45,9 +48,12 @@ class SecurityLayout extends React.Component {
           <div className={styles.app_sidebar}>
             <LeftSidebar />
           </div>
-          {/* TODO: 加了没效果... */}
           <TransitionGroup className={styles.app_main}>
-            <CSSTransition key={location.pathname} classNames='fade' timeout={300}>
+            <CSSTransition
+              key={location.pathname}
+              classNames='fade'
+              timeout={300}
+            >
               {this.props.children}
             </CSSTransition>
           </TransitionGroup>

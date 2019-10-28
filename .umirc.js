@@ -18,12 +18,22 @@ export default {
     {
       path: '/demo',
       component: '../layouts/SecurityLayout',
+      meta: {
+        title: 'demo子菜单'
+      },
       routes: [
         {
-          path: '/demo',
+          path: '/demo/demo1',
           component: './demo',
           meta: {
-            title: 'demo'
+            title: 'demo1'
+          }
+        },
+        {
+          path: '/demo/demo2',
+          component: './corpus',
+          meta: {
+            title: 'demo2'
           }
         }
       ]
