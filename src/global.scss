@@ -1,0 +1,36 @@
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease-in;
+}
+
+// Input
+.ant-input-affix-wrapper {
+  .ant-input {
+    padding: 2px 8px;
+    height: 28px;
+    border-radius: 0;
+    color: #333333;
+    &:focus {
+      box-shadow: 0 0 0 0;
+    }
+  }
+  .ant-input-suffix {
+    .ant-input-clear-icon {
+      color: #a1a1a1;
+    }
+  }
+}
+

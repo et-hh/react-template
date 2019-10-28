@@ -1,9 +1,13 @@
 import React from 'react'
+import { YiwiseInput } from '@/components'
+import './index.scss'
 
 export default class extends React.Component {
   render() {
     return (
-      <div style={{height: '100%'}}>组件demo页面</div>
+      <div style={{height: '100%'}}>
+        <YiwiseInput />
+      </div>
     )
   }
 }

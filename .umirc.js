@@ -23,17 +23,10 @@ export default {
       },
       routes: [
         {
-          path: '/demo/demo1',
+          path: '/demo',
           component: './demo',
           meta: {
-            title: 'demo1'
-          }
-        },
-        {
-          path: '/demo/demo2',
-          component: './corpus',
-          meta: {
-            title: 'demo2'
+            title: 'demo'
           }
         }
       ]
