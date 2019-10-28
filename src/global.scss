@@ -1,9 +1,24 @@
+$--color-link-normal: #1A1098;
+$--color-link-hover: #2012D8;
+
+@mixin yiwiseIconKlass {
+  font-family: 'iconfont' !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
 html, body, #root {
   height: 100%;
 }
 
 body {
   margin: 0;
+  a {
+    color: $--color-link-normal;
+    &:hover  {
+      color: $--color-link-hover;
+    }
+  }
 }
 
 .fade-enter {
@@ -34,3 +49,48 @@ body {
   }
 }
 
+// Modal
+.ant-modal {
+  .ant-modal-content {
+    .ant-modal-header {
+      padding: 12px 20px;
+      .ant-modal-title {
+        color: #333333;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+// Select
+.ant-select {
+  &.ant-select-open {
+    .ant-select-arrow {
+      .ant-select-arrow-icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  .ant-select-selection {
+    border-radius: 0;
+    &:focus {
+      box-shadow: 0 0 0 0;
+    }
+    .ant-select-selection__rendered {
+      margin-left: 10px;
+    }
+    .ant-select-arrow {
+      .ant-select-arrow-icon {
+        color: #656565;
+        transition: transform .3s;
+        &:after {
+          content: '\e701';
+          @include yiwiseIconKlass;
+        }
+        svg {
+          display: none;
+        }
+      }
+    }
+  }
+}
