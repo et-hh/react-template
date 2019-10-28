@@ -28,12 +28,12 @@ class SecurityLayout extends React.Component {
 
   render() {
     if (!this.state.isReady) return null
-    
+
     const { loading, currentUser, location } = this.props
-    if (loading)  {
+    if (loading) {
       return <div>loading</div>
     }
-    
+
     const isLogin = !!(currentUser && currentUser.userId)
     if (!isLogin) {
       return <Redirect to={'/login'}/>

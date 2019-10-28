@@ -5,19 +5,50 @@ import {
   mobile as regexpMobile,
   password as regexpPassword
 } from '@/utils/regexp'
+import {
+  storePPObj,
+  genDecodePassword,
+  genPPCache
+} from './utils'
 import styles from './index.scss'
 
 class LoginForm extends React.Component {
+  state = {
+    rememberPasswordChecked: false
+  }
+
   handleSubmit(e) {
     e.preventDefault()
     this.props.form.validateFields((error, fieldsValue) => {
       if (error) return
+
+      const { phoneNumber, password } = fieldsValue
+      console.log(this.refs.rememberPasswordCheckbox)
+      const isRememberChecked = this.state.rememberPasswordChecked
+      storePPObj({
+        phoneNumber,
+        password: isRememberChecked ? password : ''
+      })
       this.props.onSubmit && this.props.onSubmit(fieldsValue)
     })
   }
 
   handleChangeIsRememberPassword = e => {
-    console.log(e)
+    this.setState({
+      rememberPasswordChecked: e.target.checked
+    })
+  }
+
+  handleChangePhoneNumber = e => {
+    const phoneNumber = e.target.value
+    const PPCache = genPPCache()
+    if (phoneNumber && regexpMobile.test(phoneNumber)) {
+      const { setFieldsValue } = this.props.form
+      const cachePassword = PPCache[phoneNumber]
+      setFieldsValue({
+        password: cachePassword ? genDecodePassword(cachePassword) : ''
+      })
+    }
   }
 
   render() {
@@ -42,6 +73,7 @@ class LoginForm extends React.Component {
                 prefix={<Icon type='user'/>}
                 placeholder='请输入手机号'
                 allowClear
+                onChange={e => this.handleChangePhoneNumber(e)}
               />)
             }
           </Form.Item>
@@ -62,6 +94,7 @@ class LoginForm extends React.Component {
           </Form.Item>
           <div className={styles.operationRow}>
             <Checkbox
+              ref='rememberPasswordCheckbox'
               onChange={e => this.handleChangeIsRememberPassword(e)}
             >
               记住密码
