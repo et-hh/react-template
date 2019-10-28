@@ -13,7 +13,7 @@ const errorHandler = res => {
   if (errMsg) {
     notification.error({
       description: errMsg,
-      message: '调用服务器错误'
+      message: '调用服务器错误',
     })
   } else {
     notification.error({

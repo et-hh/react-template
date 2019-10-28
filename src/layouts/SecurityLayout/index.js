@@ -8,12 +8,12 @@ import TopNav from '../components/TopNav'
 
 class SecurityLayout extends React.Component {
   state = {
-    isReady: false
+    isReady: false,
   }
 
   componentDidMount() {
     this.setState({
-      isReady: true
+      isReady: true,
     })
 
     const currentUser = this.props.currentUser
@@ -22,21 +22,21 @@ class SecurityLayout extends React.Component {
     }
 
     this.props.dispatch({
-      type: 'user/fetchCurrent'
+      type: 'user/fetchCurrent',
     })
   }
 
   render() {
     if (!this.state.isReady) return null
-    
+
     const { loading, currentUser, location } = this.props
-    if (loading)  {
+    if (loading) {
       return <div>loading</div>
     }
-    
+
     const isLogin = !!(currentUser && currentUser.userId)
     if (!isLogin) {
-      return <Redirect to={'/login'}/>
+      return <Redirect to={'/login'} />
     }
 
     return (
@@ -49,11 +49,7 @@ class SecurityLayout extends React.Component {
             <LeftSidebar />
           </div>
           <TransitionGroup className={styles.app_main}>
-            <CSSTransition
-              key={location.pathname}
-              classNames='fade'
-              timeout={300}
-            >
+            <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
               {this.props.children}
             </CSSTransition>
           </TransitionGroup>
@@ -66,6 +62,6 @@ class SecurityLayout extends React.Component {
 export default connect(({ user, loading }) => {
   return {
     currentUser: user.current,
-    loading: loading.models.user
+    loading: loading.models.user,
   }
 })(SecurityLayout)

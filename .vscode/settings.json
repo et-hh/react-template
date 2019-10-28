@@ -5,12 +5,19 @@
   "debug.node.autoAttach": "on",
   "prettier.semi": false,
   "prettier.ignorePath": ".prettierignore",
-  "editor.formatOnSave": true,
   "[plaintext]": {
     "editor.formatOnSave": false
   },
   "editor.tabSize": 2,
   "prettier.tslintIntegration": true,
   "eslint.autoFixOnSave": true,
-  "prettier.eslintIntegration": true
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "vue"
+  ],
+  "prettier.eslintIntegration": true,
+  "editor.formatOnSave": true,
+  "vetur.format.defaultFormatter.js": "none",
+  "vetur.format.defaultFormatter.ts": "none"
 }

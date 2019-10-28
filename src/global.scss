@@ -1,4 +1,6 @@
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
 }
 
@@ -34,3 +36,29 @@ body {
   }
 }
 
+// PaginationTable
+.PaginationTable {
+  .ant-table {
+    font-size: 12px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    color: #333333;
+  }
+  .ant-table-thead {
+    line-height: 36px;
+    > tr > th {
+      padding: 0 0 0 15px;
+      background-color: #f0f3f8;
+    }
+  }
+  .ant-table-tbody {
+    line-height: 36px;
+    > tr {
+      &:nth-child(2n) {
+        background-color: #f8f8f8;
+      }
+      > td {
+        padding: 0 0 0 15px;
+      }
+    }
+  }
+}
