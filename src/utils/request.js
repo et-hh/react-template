@@ -23,12 +23,6 @@ const errorHandler = res => {
   }
 }
 
-// const successHandler = res => {
-//   const successMsg = res.resultMsg
-//   notification.success({
-//     message: successMsg
-//   })
-// }
 /**
  * 配置request请求时的默认参数
  */
@@ -40,7 +34,7 @@ const request = extend({
 })
 
 request.interceptors.response.use(async response => {
-  // 获取原始返回数据
+  // 获取后端返回的原始数据
   const data = await response.clone().json()
   if (data.code !== 200) {
     errorHandler(data)
