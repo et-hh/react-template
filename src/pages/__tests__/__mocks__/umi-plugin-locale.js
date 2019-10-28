@@ -1,1 +1,1 @@
-export const formatMessage = () => 'Mock text';
+export const formatMessage = () => 'Mock text'
