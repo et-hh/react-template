@@ -23,7 +23,6 @@ class LoginForm extends React.Component {
       if (error) return
 
       const { phoneNumber, password } = fieldsValue
-      console.log(this.refs.rememberPasswordCheckbox)
       const isRememberChecked = this.state.rememberPasswordChecked
       storePPObj({
         phoneNumber,
@@ -94,7 +93,6 @@ class LoginForm extends React.Component {
           </Form.Item>
           <div className={styles.operationRow}>
             <Checkbox
-              ref='rememberPasswordCheckbox'
               onChange={e => this.handleChangeIsRememberPassword(e)}
             >
               记住密码
