@@ -22,6 +22,11 @@ $nav-right-height: 28px;
       height: $nav-right-height;
       margin-right: 10px;
     }
+    .block {
+      & + .block {
+        margin-left: 10px;
+      }
+    }
     .username  {
       line-height: $nav-right-height;
     }
