@@ -1,0 +1,41 @@
+.timelineWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 30px;
+  .timelineDot {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    font-style: normal;
+    border-radius: 50%;
+    border: 1px solid;
+  }
+  .step1Wrap {
+    height: 50px;
+    .downloadTemplate {
+      text-decoration: underline;
+    }
+  }
+  :global {
+    .ant-timeline-item-content {
+      margin-left: 30px;
+    }
+  }
+  .step2Wrap {
+    position: relative;
+    .uploadWrap {
+      display: inline-block;
+      margin: 0 10px;
+      :global {
+        .ant-upload-list {
+          position: absolute;
+          left: 0;
+          right: 0;
+        }
+      }
+    }
+  }
+}

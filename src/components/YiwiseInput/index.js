@@ -35,5 +35,6 @@ class YiwiseSearchInput extends React.Component {
 }
 
 YiwiseInput.Search = YiwiseSearchInput
+YiwiseInput.TextArea = Input.TextArea
 
 export default YiwiseInput

@@ -1,0 +1,17 @@
+.questionListWrap {
+  .questionList {
+    .questionItem {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      .questionInput {
+        flex: 1;
+        margin-right: 5px;
+      }
+    }
+  }
+  .addRow {
+    display: inline-block;
+    cursor: pointer;
+  }
+}

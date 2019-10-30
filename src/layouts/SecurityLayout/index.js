@@ -2,6 +2,8 @@ import React from 'react'
 import { Redirect } from 'umi'
 import { connect } from 'dva'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import zhCN from 'antd/es/locale/zh_CN'
+import { ConfigProvider } from 'antd'
 import styles from '../index.scss'
 import LeftSidebar from '../components/LeftSidebar'
 import TopNav from '../components/TopNav'
@@ -40,21 +42,23 @@ class SecurityLayout extends React.Component {
     }
 
     return (
-      <div className={styles.app_container}>
-        <div className={styles.app_nav}>
-          <TopNav />
-        </div>
-        <div className={styles.app_content}>
-          <div className={styles.app_sidebar}>
-            <LeftSidebar />
+      <ConfigProvider locale={zhCN}>
+        <div className={styles.app_container}>
+          <div className={styles.app_nav}>
+            <TopNav />
           </div>
-          <TransitionGroup className={styles.app_main}>
-            <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
-              {this.props.children}
-            </CSSTransition>
-          </TransitionGroup>
+          <div className={styles.app_content}>
+            <div className={styles.app_sidebar}>
+              <LeftSidebar />
+            </div>
+            <TransitionGroup className={styles.app_main}>
+              <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
+                {this.props.children}
+              </CSSTransition>
+            </TransitionGroup>
+          </div>
         </div>
-      </div>
+      </ConfigProvider>
     )
   }
 }

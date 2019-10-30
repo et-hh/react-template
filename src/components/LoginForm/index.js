@@ -40,6 +40,9 @@ class LoginForm extends React.Component {
       setFieldsValue({
         password: cachePassword ? genDecodePassword(cachePassword) : '',
       })
+      cachePassword && this.setState({
+        rememberPasswordChecked: true
+      })
     }
   };
 
@@ -83,7 +86,10 @@ class LoginForm extends React.Component {
             )}
           </Form.Item>
           <div className={styles.operationRow}>
-            <Checkbox onChange={e => this.handleChangeIsRememberPassword(e)}>记住密码</Checkbox>
+            <Checkbox
+              checked={this.state.rememberPasswordChecked}
+              onChange={e => this.handleChangeIsRememberPassword(e)}
+            >记住密码</Checkbox>
           </div>
           <Button className={styles.btnLogin} type="primary" htmlType="submit" block>
             登录

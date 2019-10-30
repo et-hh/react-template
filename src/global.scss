@@ -80,6 +80,11 @@ body {
 // Modal
 .ant-modal {
   .ant-modal-content {
+    .ant-modal-close-x {
+      width: 47px;
+      height: 47px;
+      line-height: 47px;
+    }
     .ant-modal-header {
       padding: 12px 20px;
       .ant-modal-title {
