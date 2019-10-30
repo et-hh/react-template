@@ -1,6 +1,6 @@
 import React from 'react'
-import { Form, Radio } from 'antd'
-import { YiwiseInput, YiwiseModal } from '@/components'
+import { Form, Radio, Modal } from 'antd'
+import { YiwiseInput } from '@/components'
 import IntentSelect from './intentSelect'
 import QuestionList from './questionList'
 import StandardQuestionSelect from './standardQuestionSelect'
@@ -10,8 +10,11 @@ import {
 
 class CorpusModal extends React.Component {
 
-  onOpen = () => {
-    this.loadData(this.props.type)
+  componentWillReceiveProps(nextProps) {
+    const { visible, type } = nextProps
+    if (visible && !this.props.visible) {
+      this.loadData(type)
+    }
   }
 
   loadData(modalType) {
@@ -39,8 +42,9 @@ class CorpusModal extends React.Component {
   }
 
   handleCancel() {
-    const { form } = this.props
+    const { form, onToggleVisible } = this.props
     form.resetFields()
+    onToggleVisible && onToggleVisible(false)
   }
 
   get formItemLayout() {
@@ -155,15 +159,15 @@ class CorpusModal extends React.Component {
   render() {
     const { visible, type } = this.props
     return (
-      <YiwiseModal
+      <Modal
         title={type === 'add' ? '新建语料' : '编辑语料'}
         visible={visible}
         onOpen={() => this.onOpen()}
-        onOk={close => this.handleOk(close)}
+        onOk={() => this.handleOk()}
         onCancel={() => this.handleCancel()}
       >
         {this.renderForm()}
-      </YiwiseModal>
+      </Modal>
     )
   }
 }

@@ -7,10 +7,10 @@ export default class extends React.Component {
   state = {
     corpusModalVisible: false,
     batchModalVisible: false,
-    corpusModalType: 'edit'
+    corpusModalType: 'add'
   }
 
-  toggleCorpusVisible(visible, type) {
+  toggleCorpusVisible(visible, type = 'add') {
     this.setState({
       corpusModalVisible: visible,
       corpusModalType: type
@@ -37,9 +37,11 @@ export default class extends React.Component {
         <CorpusModal
           visible={corpusModalVisible}
           type={corpusModalType}
+          onToggleVisible={visible => this.toggleCorpusVisible(visible)}
         />
         <BatchImportModal
           visible={batchModalVisible}
+          onToggleVisible={visible => this.toggleBatchImportVisible(visible)}
         >
         </BatchImportModal>
       </div>

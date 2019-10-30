@@ -1,7 +1,6 @@
 import React from 'react'
-import { Timeline, Upload, Button } from 'antd'
+import { Timeline, Upload, Button, Modal } from 'antd'
 import cookie from '@/utils/cookie'
-import YiwiseModal from '../YiwiseModal'
 import styles from './index.scss'
 
 export default class extends React.Component {
@@ -37,6 +36,7 @@ export default class extends React.Component {
     this.setState({
       fileList: []
     })
+    this.props.onToggleVisible && this.props.onToggleVisible(false)
   }
 
   get uploadProps() {
@@ -58,7 +58,7 @@ export default class extends React.Component {
 
   render() {
     return (
-      <YiwiseModal
+      <Modal
         visible={this.props.visible}
         title='批量导入'
         okButtonProps={{
@@ -89,7 +89,7 @@ export default class extends React.Component {
             </Timeline.Item>
           </Timeline>
         </div>
-      </YiwiseModal>
+      </Modal>
     )
   }
 }
