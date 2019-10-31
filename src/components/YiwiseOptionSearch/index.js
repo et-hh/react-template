@@ -79,7 +79,7 @@ class YiwiseOptionSearch extends React.Component {
 }
 
 YiwiseOptionSearch.propTypes = {
-  optionList: PropTypes.array,
+  optionList: PropTypes.array.isRequired,
   width: PropTypes.string,
   defaultActiveIndex: PropTypes.number
 }
