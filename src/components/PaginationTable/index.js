@@ -5,15 +5,29 @@
  * headers    - 请求头
  * columns    - 列配置 详见 https://ant.design/components/table-cn/
  */
-import { Table } from 'antd'
+import { Table, Checkbox } from 'antd'
 import React from 'react'
 import request from '@/utils/request'
 import guid from '@/utils/guid'
 export default class extends React.Component {
   state = {
-    data: [],
+    data: [
+      {
+        key: '1',
+        name: '胡彦斌',
+        age: 32,
+        address: '西湖区湖底公园1号',
+      },
+      {
+        key: '2',
+        name: '胡彦祖',
+        age: 42,
+        address: '西湖区湖底公园1号',
+      },
+    ],
     loading: false,
     total: 0,
+    selectedRowKeys: []
   }
 
   static defaultProps = {
@@ -32,7 +46,7 @@ export default class extends React.Component {
     this.loadData()
   }
 
-  showTotal = total => {
+  showTotal = () => {
     return `共 ${this.state.total} 条`
   }
   onShowSizeChange = (current, pageSize) => {
@@ -44,6 +58,24 @@ export default class extends React.Component {
     // 切换页码
     this.loadData({ pageNum, pageSize })
   }
+
+  onSelectChange = selectedRowKeys => {
+    this.setState({ selectedRowKeys })
+  }
+
+  onCheckAll = (checked) => {
+    if(checked) {
+      const { data } = this.state
+      const selectedRowKeys = []
+      for (const item of data ){
+        selectedRowKeys.push(item.key)
+      }
+      this.setState({selectedRowKeys})
+    }else {
+      this.setState({selectedRowKeys: []})
+    }
+  }
+
   loadData = async (innerParams = {}) => {
     // 请求参数
     const { url, method, headers, params } = this.props
@@ -76,7 +108,7 @@ export default class extends React.Component {
       }
       this.setState({
         total: data.totalElements,
-        data: data.content.map((it, index) => ({
+        data: data.content.map((it) => ({
           ...it,
           key: it.id || it.key || guid(),
         })),
@@ -88,22 +120,40 @@ export default class extends React.Component {
     this.setState({ loading: false })
   }
   render() {
-    const { columns } = this.props
+    const { selectedRowKeys } = this.state
+    const { columns, selection } = this.props
+
+    const selectionProps = selection && {
+      rowSelection:  {
+        selectedRowKeys,
+        onChange: this.onSelectChange
+      }
+    }
+
     return (
-      <Table
-        {...this.props}
-        loading={this.state.loading}
-        dataSource={this.state.data}
-        pagination={{
-          ...this.props.pagination,
-          showTotal: this.showTotal,
-          onShowSizeChange: this.onShowSizeChange,
-          onChange: this.onChange,
-          total: this.state.total,
-        }}
-        columns={columns}
-        className="PaginationTable"
-      />
+      <div>
+        { selection &&
+          <div style={{marginBottom: '10px'}}>
+            <Checkbox onChange={(e) => this.onCheckAll(e.target.checked)}>全选</Checkbox>
+            <span>已选择{selectedRowKeys.length}项</span>
+          </div>
+        }
+        <Table
+          {...this.props}
+          {...selectionProps}
+          loading={this.state.loading}
+          dataSource={this.state.data}
+          pagination={{
+            ...this.props.pagination,
+            showTotal: this.showTotal,
+            onShowSizeChange: this.onShowSizeChange,
+            onChange: this.onChange,
+            total: this.state.total,
+          }}
+          columns={columns}
+          className="PaginationTable"
+        />
+      </div>
     )
   }
 }
