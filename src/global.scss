@@ -25,12 +25,13 @@ body {
 
 .fade-enter {
   opacity: 0;
-  z-index: 1;
+  transform: translateX(0);
 }
 
-.fade-enter.fade-enter-active {
+.fade-enter-active {
   opacity: 1;
-  transition: opacity 250ms ease-in;
+  transform: translateX(1000px);
+  // transition: opacity 2500ms ease-in;
 }
 
 // Input
