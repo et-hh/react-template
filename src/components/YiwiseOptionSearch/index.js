@@ -4,8 +4,13 @@ import './index.scss'
 
 export default class extends React.Component {
   state = {
-    activeIndex: 0, // 当前option索引
+    activeIndex: this.props.defaultActiveIndex, // 当前option索引
     searchVal: '' // 当前搜索值
+  }
+
+  static defaultProps = {
+    defaultActiveIndex: 0,
+    width: '328px'
   }
 
   handleChangeOption = e => {
@@ -34,7 +39,7 @@ export default class extends React.Component {
   }
 
   render() {
-    const { optionList, width = '328px' } = this.props
+    const { optionList, width } = this.props
     const { activeIndex, searchVal } = this.state
     const {
       searchKey: activeSearchKey,
