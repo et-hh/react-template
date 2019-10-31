@@ -4,6 +4,8 @@
  * method     - 请求方式
  * headers    - 请求头
  * columns    - 列配置 详见 https://ant.design/components/table-cn/
+ * url        - 请求地址
+ * data       - 外部传入数据
  */
 import { Table } from 'antd'
 import React from 'react'
@@ -11,7 +13,7 @@ import request from '@/utils/request'
 import guid from '@/utils/guid'
 export default class extends React.Component {
   state = {
-    data: [],
+    innerData: [],
     loading: false,
     total: 0,
   }
@@ -27,15 +29,19 @@ export default class extends React.Component {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
+    data: undefined,
   }
   componentDidMount() {
-    this.loadData()
+    if (!this.props.data) {
+      this.loadData()
+    }
   }
 
-  showTotal = total => {
-    return `共 ${this.state.total} 条`
+  showTotal = () => {
+    return `共 ${this.props.data ? this.props.data.length : this.state.total} 条`
   }
-  onShowSizeChange = (current, pageSize) => {
+  // eslint-disable-next-line
+  onShowSizeChange = (_, pageSize) => {
     // 切换单页显示数目
     this.loadData({ pageNum: 1, pageSize })
   }
@@ -76,7 +82,7 @@ export default class extends React.Component {
       }
       this.setState({
         total: data.totalElements,
-        data: data.content.map((it, index) => ({
+        innerData: data.content.map(it => ({
           ...it,
           key: it.id || it.key || guid(),
         })),
@@ -88,20 +94,29 @@ export default class extends React.Component {
     this.setState({ loading: false })
   }
   render() {
-    const { columns } = this.props
-    return (
+    return !!this.props.data ? (
       <Table
         {...this.props}
-        loading={this.state.loading}
-        dataSource={this.state.data}
+        dataSource={this.props.data}
         pagination={{
           ...this.props.pagination,
           showTotal: this.showTotal,
-          onShowSizeChange: this.onShowSizeChange,
-          onChange: this.onChange,
-          total: this.state.total,
+          total: this.props.data.length,
         }}
-        columns={columns}
+        className="PaginationTable"
+      />
+    ) : (
+      <Table
+        {...this.props}
+        dataSource={this.state.innerData}
+        pagination={{
+          ...this.props.pagination,
+          showTotal: this.showTotal,
+          total: this.state.total,
+          onChange: this.onChange,
+          onShowSizeChange: this.onShowSizeChange,
+        }}
+        loading={this.loading}
         className="PaginationTable"
       />
     )
