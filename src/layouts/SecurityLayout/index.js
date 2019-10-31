@@ -4,6 +4,7 @@ import { connect } from 'dva'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import zhCN from 'antd/es/locale/zh_CN'
 import { ConfigProvider } from 'antd'
+import { PageLoading } from '@/components'
 import styles from '../index.scss'
 import LeftSidebar from '../components/LeftSidebar'
 import TopNav from '../components/TopNav'
@@ -33,7 +34,7 @@ class SecurityLayout extends React.Component {
 
     const { loading, currentUser, location } = this.props
     if (loading) {
-      return <div>loading</div>
+      return <PageLoading />
     }
 
     const isLogin = !!(currentUser && currentUser.userId)
