@@ -1,5 +1,5 @@
-import umiConfig from '../../../../.umirc'
+import routes from '../../../../config/routes'
 
 export const getNavMenu = () => {
-  return umiConfig.routes.filter(route => !route.hidden)
+  return routes.filter(route => !route.hidden)
 }

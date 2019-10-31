@@ -1,7 +1,6 @@
 import React from 'react'
 import { Redirect } from 'umi'
 import { connect } from 'dva'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import zhCN from 'antd/es/locale/zh_CN'
 import { ConfigProvider } from 'antd'
 import { PageLoading } from '@/components'
@@ -19,12 +18,12 @@ class SecurityLayout extends React.Component {
       isReady: true,
     })
 
-    const currentUser = this.props.currentUser
+    const { currentUser, dispatch } = this.props
     if (currentUser && currentUser.userId) {
       return
     }
 
-    this.props.dispatch({
+    dispatch({
       type: 'user/fetchCurrent',
     })
   }
@@ -32,7 +31,7 @@ class SecurityLayout extends React.Component {
   render() {
     if (!this.state.isReady) return null
 
-    const { loading, currentUser, location } = this.props
+    const { loading, currentUser, children } = this.props
     if (loading) {
       return <PageLoading />
     }
@@ -52,11 +51,7 @@ class SecurityLayout extends React.Component {
             <div className={styles.app_sidebar}>
               <LeftSidebar />
             </div>
-            <TransitionGroup className={styles.app_main}>
-              <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
-                {this.props.children}
-              </CSSTransition>
-            </TransitionGroup>
+            <div className={styles.app_main}>{children}</div>
           </div>
         </div>
       </ConfigProvider>

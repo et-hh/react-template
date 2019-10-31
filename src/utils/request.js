@@ -4,6 +4,7 @@
  */
 import { extend } from 'umi-request'
 import { notification } from 'antd'
+import { router } from 'umi'
 /**
  * 异常处理程序
  */
@@ -38,6 +39,9 @@ request.interceptors.response.use(async response => {
   const data = await response.clone().json()
   if (data.code !== 200) {
     errorHandler(data)
+    if (data.code === 400) {
+      router.replace('/login')
+    }
   }
   return response
 })
