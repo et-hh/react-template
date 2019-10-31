@@ -14,6 +14,7 @@ export default function() {
         url="/apiPlatform/intent/list"
         columns={columns}
         params={{ robotId: 122 }}
+        selection={true}
       ></PaginationTable>
     </div>
   )
