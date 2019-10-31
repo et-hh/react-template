@@ -1,0 +1,13 @@
+:global {
+  span.ant-input-group.ant-input-group-compact {
+    display: inline-block;
+    :global {
+      .ant-select {
+        width: 92px;
+      }
+      .ant-input-search {
+        width: calc(100% - 92px);
+      }
+    }
+  }
+}
