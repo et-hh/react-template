@@ -1,5 +1,5 @@
 import { login, logout, fetchUser } from '@/api/user'
-import { routerRedux } from 'dva/router'
+import { router } from 'umi'
 import { notification } from 'antd'
 
 export default {
@@ -14,7 +14,7 @@ export default {
       const res = yield call(login, payload)
       yield put({ type: 'updateCurrent', payload: res.data })
       if (res.code === 200) {
-        yield put(routerRedux.replace('/'))
+        yield put(router.replace('/'))
       }
     },
     *logout(_, { call, put }) {
@@ -23,7 +23,7 @@ export default {
       notification.error({
         message: '登出成功',
       })
-      yield put(routerRedux.replace('/login'))
+      yield put(router.replace('/login'))
     },
     *fetchCurrent(_, { call, put }) {
       const res = yield call(fetchUser)
