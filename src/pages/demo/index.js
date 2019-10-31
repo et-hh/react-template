@@ -36,7 +36,7 @@ export default class extends React.Component {
         <Select>
           <Select.Option value='3'>33</Select.Option>
         </Select>
-        <YiwiseOptionSearch optionList={optionList} />
+        <YiwiseOptionSearch defaultActiveIndex='1' optionList={optionList} />
         <TransitionGroup>
           {
             this.state.list.map(item => {

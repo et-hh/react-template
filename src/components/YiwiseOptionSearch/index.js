@@ -1,8 +1,9 @@
 import React from 'react'
 import { Input, Select } from 'antd'
+import PropTypes from 'prop-types'
 import './index.scss'
 
-export default class extends React.Component {
+class YiwiseOptionSearch extends React.Component {
   state = {
     activeIndex: this.props.defaultActiveIndex, // 当前option索引
     searchVal: '' // 当前搜索值
@@ -76,3 +77,10 @@ export default class extends React.Component {
     )
   }
 }
+
+YiwiseOptionSearch.propTypes = {
+  optionList: PropTypes.array,
+  width: PropTypes.string,
+  defaultActiveIndex: PropTypes.number
+}
+export default YiwiseOptionSearch

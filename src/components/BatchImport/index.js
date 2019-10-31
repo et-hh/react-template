@@ -1,9 +1,10 @@
 import React from 'react'
 import { Timeline, Upload, Button, Modal } from 'antd'
+import PropTypes from 'prop-types'
 import cookie from '@/utils/cookie'
 import styles from './index.scss'
 
-export default class extends React.Component {
+class BatchImportModal extends React.Component {
   state = {
     fileList: []
   }
@@ -93,3 +94,10 @@ export default class extends React.Component {
     )
   }
 }
+
+BatchImportModal.propTypes = {
+  onToggleVisible: PropTypes.func,
+  visible: PropTypes.bool,
+}
+
+export default BatchImportModal
