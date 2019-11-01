@@ -37,6 +37,7 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
+      "validate-commit-msg",
       "eslint --fix",
       "git add"
     ]
@@ -47,9 +48,6 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
-    },
-    "ghooks": {
-      "commit-msg": "validate-commit-msg"
     }
   }
 }
