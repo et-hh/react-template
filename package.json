@@ -5,6 +5,7 @@
     "build": "umi build",
     "test": "umi test",
     "lint": "eslint --ext .js src --fix",
+    "commitmsg": "validate-commit-msg",
     "precommit": "lint-staged"
   },
   "dependencies": {
@@ -37,7 +38,6 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "validate-commit-msg",
       "eslint --fix",
       "git add"
     ]
