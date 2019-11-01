@@ -1,0 +1,26 @@
+##  (2019-11-01)
+
+* feat: add ([797542b](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/797542b))
+* feat: add commit msg 规范 ([490c9a0](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/490c9a0))
+* feat: add component pageloading ([7ca8085](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/7ca8085))
+* feat: add propTypes ([d724e4d](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/d724e4d))
+* feat: component isRequired ([0881575](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/0881575))
+* feat: component YiwiseInput ([427edb7](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/427edb7))
+* feat: component YiwiseOptionSearch ([c034ba0](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/c034ba0))
+* feat: component YiwiseTooltip ([003ce2f](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/003ce2f))
+* feat: first commit 初始化项目 ([f1f9954](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/f1f9954))
+* feat: fix login ([d1ec93a](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/d1ec93a))
+* feat: fix searchOption ([3ab2ce5](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/3ab2ce5))
+* feat: html ([1585713](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/1585713))
+* feat: modal ([a94d8d1](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/a94d8d1))
+* feat: modal ([1b0a836](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/1b0a836))
+* feat: remove dva router 引用 ([6912c75](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/6912c75))
+* feat: 修改package.json ([41e1799](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/41e1799))
+* feat: 左侧菜单栏递归获取，支持多级子菜单 ([b45735f](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/b45735f))
+* feat: 抽离配置 ([39610f2](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/39610f2))
+* feat: 支持mock ([3a036b6](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/3a036b6))
+* feat: 添加类型检查 ([3e341ac](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/3e341ac))
+* feat: 页面久置，导致登录态过期，自动回到登录页 ([33af4ac](http://gitlab.yiwise.local/ai-call-platform/front-project/corpus-manage-system/commit/33af4ac))
+
+
+
