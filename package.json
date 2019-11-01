@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",
+    "cz-conventional-changelog": "^3.0.2",
     "eslint": "^5.4.0",
     "eslint-config-umi": "^1.4.0",
     "eslint-plugin-flowtype": "^2.50.0",
@@ -30,7 +31,8 @@
     "react-test-renderer": "^16.7.0",
     "sass-loader": "^8.0.0",
     "umi": "^2.7.7",
-    "umi-plugin-react": "^1.8.4"
+    "umi-plugin-react": "^1.8.4",
+    "validate-commit-msg": "^2.14.0"
   },
   "lint-staged": {
     "*.{js,jsx}": [
@@ -40,5 +42,10 @@
   },
   "engines": {
     "node": ">=8.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
